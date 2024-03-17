@@ -1,5 +1,6 @@
 #pragma once
 
 #include <vector>
+using namespace std;
 
-std::pair<int, int> countAndSum(const std::vector<int>& array);
+std::pair<double, double> calculateSumAndProduct(const vector<double>& arr, int b, int d);

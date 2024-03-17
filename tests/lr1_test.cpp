@@ -6,7 +6,7 @@
 // Подробнее https://google.github.io/googletest/reference/testing.html
 
 // Тестовый класс
-class CountAndSumTest : public ::testing::Test {
+class calculateSumAndProductTest : public ::testing::Test {
 protected:
     // Здесь вы можете добавить дополнительные настройки для тестов
     // в функции SetUp()
@@ -23,51 +23,110 @@ protected:
     }
 
     // Объявляем переменные, которые будут использоваться в тестах
-    std::vector<int> arr;
-    std::pair<int, int> result;
+    std::vector<double> arr;
+    std::pair<double, double> result;
 };
 
-// Пример теста1
-TEST_F(CountAndSumTest, CTest1) {
+TEST_F(calculateSumAndProductTest, CTest1) {
 // Вызываем функцию countAndSum с тестовыми данными
-    result = countAndSum(arr);
+    arr = {};
+    result = calculateSumAndProduct(arr,1,4);
 
 // Проверяем ожидаемые результаты
-    EXPECT_EQ(result.first, 5);
-    EXPECT_EQ(result.second, 100);
+    EXPECT_EQ(result.first, 0);
+    EXPECT_EQ(result.second, 1.0);
+
+/*Тестовый вариант для пути 1:
+Исходные данные: нулевой массив.
+Ожидаемые результаты: сумма положительных чисел = 0, произведение = 1.
+*/
 }
 
-// Пример теста111111
-TEST_F(CountAndSumTest, CTest11111) {
+TEST_F(calculateSumAndProductTest, CTest2) {
 // Вызываем функцию countAndSum с тестовыми данными
-    result = countAndSum(arr);
+    arr = { 10, 14, 15, 20, 21, 25, 30 };
+    result = calculateSumAndProduct(arr, 10, 11);
+    
+// Проверяем ожидаемые результаты
+    EXPECT_EQ(result.first, 135.0);
+    EXPECT_EQ(result.second, 1.0);
+/*Тестовый вариант для пути 2: 
+Исходные данные: arr = {10, 14, 15, 20, 21, 25, 30}; b =10; d=11.
+Ожидаемые результаты: сумма положительных чисел = 135, произведение = 1.
+*/
+}
+
+TEST_F(calculateSumAndProductTest, CTest3) {
+// Вызываем функцию countAndSum с тестовыми данными
+    arr = { -10, -14, -15, -20, -21, -25, -30 };
+    result = calculateSumAndProduct(arr, 10, 11);
 
 // Проверяем ожидаемые результаты
-    EXPECT_EQ(result.first, 5);
-    EXPECT_EQ(result.second, 100);
+    EXPECT_EQ(result.first, 0.0);
+    EXPECT_EQ(result.second, 1.0);
+
+    /*Тестовый вариант для пути 3: 
+Исходные данные: arr = {-10, -14, -15, -20, -21, -25, -30}; b =10; d=11.
+Ожидаемые результаты: сумма положительных чисел = 0, произведение = 1.
+*/
 }
 
-// Пример теста 2
-TEST_F(CountAndSumTest, CTest2) {
-// Вызываем функцию countAndSum с тестовыми данными
-    result = countAndSum(arr);
+TEST_F(calculateSumAndProductTest, CTest4) {
+    // Вызываем функцию countAndSum с тестовыми данными
+    arr = { 10, -14, -15, -20, -21, -25, 30 };
+    result = calculateSumAndProduct(arr, 1, 4);
 
-// Проверяем ожидаемые результаты
-    EXPECT_EQ(result.first, 15);
-    EXPECT_EQ(result.second, 100);
+    // Проверяем ожидаемые результаты
+    EXPECT_EQ(result.first, 40.0);
+    EXPECT_EQ(result.second, 88200.0);
+
+    /*Тестовый вариант для пути 4:
+Исходные данные : arr = { 10, -14, -15, -20, -21, -25, 30 }; b = 1; d = 4.
+Ожидаемые результаты : сумма положительных чисел = 0, произведение = 1.
+*/
 }
 
-// Пример теста3
-TEST(CountAndSumTest1, CTest3) {
-    // Объявляем переменные, которые будут использоваться в тесте
-    std::vector<int> arr;
-    std::pair<int, int> result;
-    // Инициализация данных
-    arr = {10, 14, 15, 20, 21, 25, 30, 35, 5};
-// Вызываем функцию countAndSum с тестовыми данными
-    result = countAndSum(arr);
+TEST_F(calculateSumAndProductTest, CTest5) {
+    // Вызываем функцию countAndSum с тестовыми данными
+    arr = { -10, -14, -15, -20, -21, -25, -30 };
+    result = calculateSumAndProduct(arr, 1, 4);
 
-// Проверяем ожидаемые результаты
-    EXPECT_EQ(result.first, 6);
-    EXPECT_EQ(result.second, 105);
+    // Проверяем ожидаемые результаты
+    EXPECT_EQ(result.first, 0.0);
+    EXPECT_EQ(result.second, 88200.0);
+
+    /*Тестовый вариант для пути 5: 
+Исходные данные: arr = {-10, -14, -15, -20, -21, -25, -30}; b =1; d=4.
+Ожидаемые результаты: сумма положительных чисел = 0, произведение = 88200.
+
+*/
 }
+
+TEST_F(calculateSumAndProductTest, CTest6) {
+    // Вызываем функцию countAndSum с тестовыми данными
+    arr = { 10, -14, -15, -20, -21, -25, -30 };
+    result = calculateSumAndProduct(arr, 1, -4);
+
+    // Проверяем ожидаемые результаты
+    EXPECT_EQ(result.first, 10.0);
+    EXPECT_EQ(result.second, 1.0);
+
+    /*если в массиве нет положительных элементов, Arr.size() <= b <= Arr.size() <  и d<0 за пределами его размера
+*/
+}
+
+TEST_F(calculateSumAndProductTest, CTest7) {
+    // Вызываем функцию countAndSum с тестовыми данными
+    arr = { -10, -14, -15, -20, -21, -25, -30 };
+    result = calculateSumAndProduct(arr, 1, -4);
+
+    // Проверяем ожидаемые результаты
+    EXPECT_EQ(result.first, 0.0);
+    EXPECT_EQ(result.second, 1.0);
+
+    /*если в массиве нет положительных элементов, Arr.size() <= b <= Arr.size() <  и d<0 за пределами его размера
+*/
+}
+
+
+
